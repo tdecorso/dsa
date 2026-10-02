@@ -77,3 +77,19 @@ void vector_push_back(dsa_vector_t* v, void* item, dsa_error_t* err) {
     memcpy(base + v->count * v->elemsz, item, v->elemsz);
     mark_ok(err);
 }
+
+size_t vector_count(const dsa_vector_t* v) {
+    return v ? v->count : 0;
+}
+
+size_t vector_elem_size(const dsa_vector_t* v) {
+    return v ? v->elemsz : 0;
+}
+
+size_t vector_capacity(const dsa_vector_t* v) {
+    return v ? v->capacity : 0;
+}
+
+void* vector_data(const dsa_vector_t* v) {
+    return v ? v->data : NULL;
+}
