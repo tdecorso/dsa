@@ -23,7 +23,17 @@ void test_vector_create() {
     vector_destroy(v);
 }
 
+void test_vector_push_back() {
+    dsa_vector_t* v = vector_create(sizeof(int), 10, NULL);
+    dsa_error_t error = {0};
+    int some = 1;
+    vector_push_back(v, &some, &error);
+    check(error.type == DSA_ERROR_OKAY, "\nvector_push_back: valid arguments failed.\n");
+    vector_destroy(v);
+}
+
 int main(void) {
     test_vector_create();
+    test_vector_push_back();
     return g_failed > 0;
 }
