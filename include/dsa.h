@@ -26,6 +26,7 @@ void          vector_destroy(dsa_vector_t* v);
 void vector_push_back(dsa_vector_t* v, void* item, dsa_error_t* err);
 void vector_pop_back(dsa_vector_t* v, void* item, dsa_error_t* err);
 void vector_insert(dsa_vector_t* v, void* item, size_t at, dsa_error_t* err);
+void vector_remove(dsa_vector_t* v, void* item, size_t at, dsa_error_t* err);
 
 void*  vector_data(const dsa_vector_t* v);
 size_t vector_count(const dsa_vector_t* v);

@@ -65,11 +65,27 @@ void test_vector_insert() {
     check(numbers[3] == 3, "\nvector_insert: expected %d, got %d\n", 3, numbers[3]);
 }
 
+void test_vector_remove() {
+    dsa_vector_t* v = vector_create(sizeof(int), 10, NULL);
+    int a = 1, b = 2, c = 3;
+    vector_push_back(v, &a, NULL);
+    vector_push_back(v, &b, NULL);
+    vector_push_back(v, &c, NULL); // [1, 2, 3]
+
+    int x = 0;
+    vector_remove(v, &x, 1, NULL); // [1, 3]
+
+    int* numbers = vector_data(v);
+    check(numbers[0] == 1, "\nvector_remove: expected %d, got %d\n", 1, numbers[0]);
+    check(numbers[1] == 3, "\nvector_remove: expected %d, got %d\n", 3, numbers[1]);
+}
+
 int main(void) {
     test_vector_create();
     test_vector_push_back();
     test_vector_pop_back();
     test_vector_insert();
+    test_vector_remove();
 
     summary();
     return g_failed > 0;

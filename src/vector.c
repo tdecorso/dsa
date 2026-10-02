@@ -122,6 +122,22 @@ void vector_insert(dsa_vector_t* v, void* item, size_t at, dsa_error_t* err) {
     mark_ok(err);
 }
 
+void vector_remove(dsa_vector_t* v, void* item, size_t at, dsa_error_t* err) {
+    if (!v) {
+        format_error(err, DSA_ERROR_INVALID_ARGS, "You cannot remove an item from a NULL vector.");
+        return;
+    }
+    if (at >= v->count) {
+        format_error(err, DSA_ERROR_INVALID_ARGS, "You cannot remove an item past its current count.");
+        return;
+    }
+    uint8_t* base = v->data;
+    if (item) memcpy(item, base + at * v->elemsz, v->elemsz);
+    memmove(base + at * v->elemsz, base + (at + 1) * v->elemsz, v->elemsz * (v->count - at - 1));
+    v->count--;
+    mark_ok(err);
+}
+
 size_t vector_count(const dsa_vector_t* v) {
     return v ? v->count : 0;
 }
