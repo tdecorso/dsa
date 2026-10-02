@@ -75,7 +75,19 @@ void vector_push_back(dsa_vector_t* v, void* item, dsa_error_t* err) {
 
     uint8_t* base = v->data;
     memcpy(base + v->count * v->elemsz, item, v->elemsz);
+    v->count++;
     mark_ok(err);
+}
+
+void vector_pop_back(dsa_vector_t* v, void* item, dsa_error_t* err) {
+    if (!v) {
+        format_error(err, DSA_ERROR_INVALID_ARGS, "You cannot pop an item from a NULL vector.");
+        return;
+    }
+
+    uint8_t* base = v->data;
+    if (item) memcpy(item, base + (v->count - 1) * v->elemsz, v->elemsz);
+    v->count--;
 }
 
 size_t vector_count(const dsa_vector_t* v) {
