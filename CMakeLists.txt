@@ -4,7 +4,7 @@ project(dsa LANGUAGES C VERSION 0.1)
 
 include_directories(include)
 
-set(SRC_FILES src/vector.c)
+set(SRC_FILES src/vector.c src/error.c)
 
 add_library(dsa ${SRC_FILES})
 

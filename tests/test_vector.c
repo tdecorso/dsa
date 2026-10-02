@@ -18,8 +18,9 @@ static void check(bool eq, const char* fmt, ...) {
 }
 
 void test_vector_create() {
-    vector_t* v = vector_create(sizeof(int), 10);
+    dsa_vector_t* v = vector_create(sizeof(int), 10, NULL);
     check(v != NULL, "\nvector_create: valid arguments return NULL.\n");
+    vector_destroy(v);
 }
 
 int main(void) {
