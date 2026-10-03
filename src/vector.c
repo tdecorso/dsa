@@ -85,6 +85,11 @@ void vector_pop_back(dsa_vector_t* v, void* item, dsa_error_t* err) {
         return;
     }
 
+    if (v->count == 0) {
+        format_error(err, DSA_ERROR_INVALID_ARGS, "You cannot pop an item from an empty vector.");
+        return;
+    }
+
     uint8_t* base = v->data;
     if (item) memcpy(item, base + (v->count - 1) * v->elemsz, v->elemsz);
     v->count--;
