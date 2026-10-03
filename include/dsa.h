@@ -33,4 +33,11 @@ size_t vector_count(const dsa_vector_t* v);
 size_t vector_elem_size(const dsa_vector_t* v);
 size_t vector_capacity(const dsa_vector_t* v);
 
+
+typedef struct list_node dsa_list_node_t;
+typedef struct list dsa_list_t;
+
+dsa_list_t* list_create(size_t elem_size, dsa_error_t* err);
+void list_destroy(dsa_list_t* l);
+
 #endif // H_DSA
